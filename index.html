@@ -507,10 +507,109 @@
             wifiOverlay.classList.remove('active');
         });
 
-        // 3. Settings Icon Function
-        function openPhoneSettings() {
-            alert("This icon would link to the official Android phone settings.");
+        package com.example.taskapp
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MaterialTheme {
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                    TodoApp()
+                }
+            }
         }
+    }
+}
+
+@Composable
+fun TodoApp() {
+    // স্টেট: টাস্কের লিস্ট এবং ইনপুট টেক্সট মনে রাখার জন্য
+    var taskText by remember { mutableStateOf("") }
+    var taskList by remember { mutableStateOf(listOf<String>()) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        Text(
+            text = "আমার কাজের তালিকা",
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+
+        // ইনপুট ফিল্ড এবং অ্যাড বাটন
+        Row(modifier = Modifier.fillMaxWidth()) {
+            OutlinedTextField(
+                value = taskText,
+                onValueChange = { taskText = it },
+                label = { Text("নতুন কাজ লিখুন") },
+                modifier = Modifier.weight(1f)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Button(
+                onClick = {
+                    if (taskText.isNotBlank()) {
+                        taskList = taskList + taskText
+                        taskText = "" // ফিল্ড খালি করা
+                    }
+                },
+                modifier = Modifier.align(androidx.compose.ui.Alignment.CenterVertically)
+            ) {
+                Text("যোগ করুন")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // টাস্ক লিস্ট প্রদর্শন
+        LazyColumn {
+            items(taskList) { task ->
+                TaskItem(taskName = task, onDelete = {
+                    taskList = taskList - task
+                })
+            }
+        }
+    }
+}
+
+@Composable
+fun TaskItem(taskName: String, onDelete: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+        ) {
+            Text(text = taskName, style = MaterialTheme.typography.bodyLarge)
+            IconButton(onClick = onDelete) {
+                Icon(Icons.Default.Delete, contentDescription = "Delete", tint = Color.Red)
+            }
+        }
+    }
+    }
     </script>
 </body>
             </html>
