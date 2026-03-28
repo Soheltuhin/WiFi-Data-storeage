@@ -2,12 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi Data Verification</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding-top: 100px; background-color: #f4f4f9; }
+        .container { background: white; padding: 30px; border-radius: 10px; display: inline-block; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        
+        /* ড্যাশবোর্ড শুরুতে হাইড বা লুকানো থাকবে */
+        #dashboard { display: none; }
+        
+        button { background-color: #4285F4; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        button:hover { background-color: #357ae8; }
+        .loading-text { color: #555; font-style: italic; margin-top: 10px; }
+    </style>
 </head>
 <body>
-    <h2>গুগল অ্যাকাউন্ট দিয়ে লগইন করুন</h2>
-    <a href="https://accounts.google.com/" target="_blank">
-        <button>Login with Google</button>
-    </a>
+
+    <div class="container">
+        <div id="login-section">
+            <h2>Login with your Google Account</h2>
+            <p>To access WiFi data storage, please login below:</p>
+            <button id="loginBtn">Login with Google</button>
+        </div>
+
+        <div id="dashboard">
+            <h2 style="color: green;">Thank you!</h2>
+            <p style="font-size: 18px;">Your WiFi data storage is being loading...</p>
+            <div class="loading-text">Verifying credentials, please wait...</div>
+        </div>
+    </div>
+
+    <script>
+        const loginBtn = document.getElementById('loginBtn');
+        const loginSection = document.getElementById('login-section');
+        const dashboard = document.getElementById('dashboard');
+
+        // ধাপ ২: ক্লিক ইভেন্ট
+        loginBtn.addEventListener('click', function() {
+            // নতুন ট্যাবে গুগল লগইন পেজ ওপেন হবে
+            window.open("https://accounts.google.com/", "_blank");
+
+            // ধাপ ৩: টাইমার (৩ সেকেন্ড বা ৩০০০ মিলিসেকেন্ড)
+            setTimeout(function() {
+                // ধাপ ৪: লগইন সেকশন মুছে যাবে এবং ড্যাশবোর্ড আসবে
+                loginSection.style.display = 'none';
+                dashboard.style.display = 'block';
+            }, 3000); 
+        });
+    </script>
+
 </body>
-</html>
+    </html>
