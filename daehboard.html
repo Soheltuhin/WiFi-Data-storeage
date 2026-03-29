@@ -1,0 +1,139 @@
+**************************************************************** PROJECT FILE: WiFi_Coin_Wallet_v2026_NewGen
+VERSION: 2026 (NEW GENERATE)
+STATUS: COMPLETE SYSTEM DOCUMENTATION
+****************************************************************
+
+1. CORE CONCEPT & UTILITY:
+--------------------------
+The "WiFi Coin Wallet" is a gamified utility app designed to track 
+WiFi data usage and convert it into digital assets called "WiFi Coins."
+The primary goal is to reach 1000MB (1GB) to fill a 100% Battery 
+and earn 1000 Coins.
+
+2. UI STRUCTURE (TOP TO BOTTOM):
+--------------------------------
+[SECTION A: TOP HEADER - PROFILE]
+- LEFT (Avatar): 
+    * Default Gray Avatar (Logged Out).
+    * User Photo (Logged In - via Email/Password login box).
+- CENTER (Text): 
+    * "USER NAMES" (Uppercase, Size: 10sp).
+    * Subtext: "PREMIUM USER".
+- RIGHT (Settings Icon):
+    * Gear Icon (Gear shape).
+    * Color Logic: Bright Green (Online), Red-Yellow Mix (Offline).
+
+[SECTION B: PROMINENT BANNER - MAIN HUB]
+- Card Design: 160x120px with Blue-Green mixed border.
+- Content: YouTube Logo (Center) + "WiFi-Data-Coins" (Large Text).
+- Action: Pop-up window with Liquid Battery Animation & Live Coin counter.
+
+[SECTION C: APP GRID - 3x3 MATRIX]
+- Design: Glassmorphism cards with multi-color glow (Green, Blue, Pink, Red).
+- Apps & Actions (One-Tap Access):
+    1. Google (Search/App Open)
+    2. Facebook (Official App/Login Page)
+    3. Gemini AI (AI Interface)
+    4. TikTok (App/Profile)
+    5. WhatsApp (Direct Chat/App)
+    6. Al-Quran (Digital Platform)
+    7. Dialer (Default Phone Pad)
+    8. Imo (App/Play Store Link)
+    9. Messenger (App/GitHub Repo Link)
+    10. YouTube (App/Play Store Link)
+
+3. TECHNICAL SPECIFICATIONS:
+----------------------------
+- DATA LOGIC: 1 MB = 1 Coin | 1000 MB = 1 Full Battery.
+- CONNECTIVITY: Tracking works ONLY when connected to WiFi (Ignore Mobile Data).
+- AUTHENTICATION: Firebase Email/Password login with Cloud Sync.
+- BACKGROUND: Deep Black / Pitch Dark background.
+- VISUALS: High-contrast bright app icons with dynamic glowing effect.
+
+4. ANIMATION LOGIC:
+-------------------
+- Liquid Flow Animation: The battery icon fills up gradually with a 
+  flowing liquid effect as data is consumed in real-time.
+
+****************************************************************
+END OF DOCUMENT - PREPARED BY GEMINI AI (2026)
+****************************************************************
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi Coin Wallet v2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #000000; color: white; font-family: sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+        .liquid-battery {
+            width: 60px; height: 100px; border: 3px solid #3b82f6;
+            position: relative; border-radius: 5px; overflow: hidden;
+        }
+        .liquid {
+            position: absolute; bottom: 0; width: 100%;
+            background: linear-gradient(to top, #00ff00, #34d399);
+            height: 40%; /* Dynamic fill */
+            animation: flow 2s infinite ease-in-out;
+        }
+        @keyframes flow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .glow-green { box-shadow: 0 0 15px #22c55e; }
+        .glow-blue { box-shadow: 0 0 15px #3b82f6; }
+        .glow-pink { box-shadow: 0 0 15px #ec4899; }
+        .glow-red { box-shadow: 0 0 15px #ef4444; }
+    </style>
+</head>
+<body class="p-4">
+
+    <header class="flex justify-between items-center mb-8">
+        <div class="flex items-center gap-2">
+            <div class="w-12 h-12 bg-gray-600 rounded-full border-2 border-gray-400"></div> <div>
+                <h2 class="text-[10sp] font-bold uppercase">USER NAMES</h2>
+                <p class="text-xs text-green-400">PREMIUM USER</p>
+            </div>
+        </div>
+        <div class="w-8 h-8 rounded-full border-2 border-green-500 flex items-center justify-center">
+            <span class="text-green-500">⚙️</span> </div>
+    </header>
+
+    <section class="flex justify-center mb-10">
+        <div class="w-[160px] h-[120px] glass-card border-2 border-cyan-500 flex flex-col items-center justify-center cursor-pointer">
+            <div class="text-3xl">YouTube</div>
+            <p class="text-[10px] mt-2 text-cyan-300 font-bold">WiFi-Data-Coins</p>
+        </div>
+    </section>
+
+    <main class="grid grid-cols-3 gap-4">
+        <div class="glass-card p-4 flex flex-col items-center glow-green"><span>Google</span></div>
+        <div class="glass-card p-4 flex flex-col items-center glow-blue"><span>Facebook</span></div>
+        <div class="glass-card p-4 flex flex-col items-center glow-pink"><span>Gemini AI</span></div>
+        
+        <div class="glass-card p-4 flex flex-col items-center glow-red"><span>TikTok</span></div>
+        <div class="glass-card p-4 flex flex-col items-center glow-green"><span>WhatsApp</span></div>
+        <div class="glass-card p-4 flex flex-col items-center glow-blue"><span>Al-Quran</span></div>
+        
+        <div class="glass-card p-4 flex flex-col items-center glow-pink"><span>Dialer</span></div>
+        <div class="glass-card p-4 flex flex-col items-center glow-red"><span>Imo</span></div>
+        <div class="glass-card p-4 flex flex-col items-center glow-green"><span>Messenger</span></div>
+    </main>
+
+    <div class="mt-10 flex flex-col items-center">
+        <div class="liquid-battery">
+            <div class="liquid"></div>
+        </div>
+        <p class="mt-2 text-sm">Coins: <span id="coinCount">400</span> / 1000</p>
+    </div>
+
+</body>
+</html>
