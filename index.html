@@ -3,205 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammad Sohel Hossain - Dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --neon-blue: #00f2ff;
-            --bg-dark: #010409; 
-            --yt-red: #ff0000;
-            --card-bg: rgba(13, 17, 23, 0.9); 
-            --border-color: rgba(240, 246, 252, 0.1);
-        }
-
         body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
             margin: 0;
-            background: var(--bg-dark);
-            background: linear-gradient(180deg, #010409 0%, #0d1117 100%);
+            font-family: Arial, sans-serif;
             color: white;
+            /* ছবির মতো ৩ লেয়ার ব্যাকগ্রাউন্ড */
+            background: linear-gradient(180deg, 
+                #003144 0%, 
+                #003144 45%, 
+                #c2185b 55%, 
+                #004d00 100%);
             height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
         }
 
-        /* Header */
+        /* ১. হেডার সেকশন */
         .header {
-            padding: 15px 20px;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border-color);
+            background: #001f2d;
+            border-bottom: 2px solid #00f2ff;
         }
-
-        .profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
-
+        .profile { display: flex; align-items: center; gap: 10px; }
         .avatar {
-            width: 45px;
-            height: 45px;
+            width: 45px; height: 45px;
             border-radius: 50%;
-            border: 2px solid var(--neon-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+            background: #008cff;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; border: 2px solid #00f2ff;
         }
+        .premium { color: #00f2ff; font-size: 10px; font-weight: bold; }
 
-        /* YouTube Banner */
-        .yt-banner {
+        /* ২. ইউটিউব ব্যানার (লাল বর্ডার) */
+        .yt-card {
             margin: 20px;
-            height: 160px;
-            border: 2px solid var(--yt-red);
-            border-radius: 15px;
+            height: 250px;
+            background: black;
+            border: 4px solid #ff0000;
+            border-radius: 30px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            position: relative;
             text-decoration: none;
             color: white;
-            position: relative;
-            background: black;
+            box-shadow: 0 0 15px rgba(255,0,0,0.5);
         }
+        .sub-btn {
+            position: absolute; top: 15px; right: 15px;
+            background: #cc0000; padding: 5px 10px;
+            border-radius: 5px; font-size: 10px;
+        }
+        .yt-logo { font-size: 80px; color: #ff0000; }
+        .yt-text { margin-top: 15px; font-weight: bold; letter-spacing: 3px; font-size: 22px; }
 
-        .yt-banner i { font-size: 50px; color: var(--yt-red); }
-
-        /* App Grid */
+        /* ৩. গ্রিড আইকন (গ্লাস ডিজাইন) */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            padding: 20px;
-            flex-grow: 1;
+            gap: 12px;
+            padding: 15px;
         }
-
-        .app-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+        .app {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 20px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 15px 0;
             text-decoration: none;
             color: white;
-            transition: 0.3s;
         }
+        .app i { font-size: 35px; margin-bottom: 8px; }
+        .app span { font-size: 12px; opacity: 0.9; }
 
-        .app-item:active { transform: scale(0.9); }
-        .app-item i { font-size: 28px; margin-bottom: 8px; }
-        .app-item span { font-size: 12px; }
-
-        /* Login Overlay */
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-        }
-
-        .popup {
-            background: #161b22;
-            padding: 25px;
-            border-radius: 15px;
-            width: 80%;
-            border: 1px solid var(--neon-blue);
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            background: #0d1117;
-            border: 1px solid #30363d;
-            color: white;
-            border-radius: 5px;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 10px;
-            background: var(--neon-blue);
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-        }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="profile" id="profileBtn">
+        <div class="profile">
             <div class="avatar">SH</div>
             <div>
                 <div style="font-size: 13px; font-weight: bold;">MOHAMMAD SOHEL HOSSAIN</div>
-                <div style="font-size: 10px; color: #3fb950;"><i class="fas fa-check-circle"></i> PREMIUM USER</div>
+                <div class="premium"><i class="fas fa-check-circle"></i> PREMIUM USER</div>
             </div>
         </div>
-        <i class="fas fa-cog" style="color: #8b949e;"></i>
+        <i class="fas fa-cog"></i>
     </div>
 
-    <a href="https://youtube.com" class="yt-banner">
-        <i class="fab fa-youtube"></i>
-        <span style="margin-top: 10px; font-weight: bold; letter-spacing: 2px;">YOUTUBE</span>
+    <a href="#" class="yt-card">
+        <div class="sub-btn">Subscribe <i class="fas fa-bell"></i></div>
+        <i class="fab fa-youtube yt-logo"></i>
+        <div class="yt-text">YOUTUBE</div>
     </a>
 
     <div class="grid">
-        <a href="https://google.com" class="app-item"><i class="fab fa-google" style="color: #4285F4;"></i><span>Google</span></a>
-        <a href="https://facebook.com" class="app-item"><i class="fab fa-facebook" style="color: #1877F2;"></i><span>Facebook</span></a>
-        <a href="https://gemini.google.com" class="app-item"><i class="fas fa-wand-magic-sparkles" style="color: #8E75FF;"></i><span>Gemini AI</span></a>
-        <a href="https://tiktok.com" class="app-item"><i class="fab fa-tiktok" style="color: #ff0050;"></i><span>TikTok</span></a>
-        <a href="https://wa.me/" class="app-item"><i class="fab fa-whatsapp" style="color: #25D366;"></i><span>WhatsApp</span></a>
-        <a href="https://quran.com" class="app-item"><i class="fas fa-book-quran" style="color: #FFD700;"></i><span>Al-Quran</span></a>
-        <a href="tel:" class="app-item"><i class="fas fa-phone-alt" style="color: #34C759;"></i><span>Dialer</span></a>
-        <a href="#" class="app-item"><i class="fas fa-wifi" style="color: #00f2ff;"></i><span>WiFi Setup</span></a>
-        <a href="https://github.com/soheltuhin" class="app-item"><i class="fab fa-github"></i><span>GitHub New</span></a>
+        <a href="#" class="app"><i class="fab fa-google" style="color: #4285F4;"></i><span>Google</span></a>
+        <a href="#" class="app"><i class="fab fa-facebook" style="color: #1877F2;"></i><span>Facebook</span></a>
+        <a href="#" class="app"><i class="fas fa-wand-magic-sparkles" style="color: #C29BFF;"></i><span>Gemini AI</span></a>
+        <a href="#" class="app"><i class="fab fa-tiktok" style="color: #ff0050;"></i><span>TikTok</span></a>
+        <a href="#" class="app"><i class="fab fa-whatsapp" style="color: #25D366;"></i><span>WhatsApp</span></a>
+        <a href="#" class="app"><i class="fas fa-book-quran" style="color: #FFD700;"></i><span>Al-Quran</span></a>
+        <a href="#" class="app"><i class="fas fa-phone-alt" style="color: #34C759;"></i><span>Dialer</span></a>
+        <a href="#" class="app"><i class="fas fa-wifi" style="color: #00f2ff;"></i><span>WiFi Setup</span></a>
+        <a href="#" class="app"><i class="fab fa-github" style="color: white;"></i><span>GitHub New</span></a>
     </div>
 
-    <div class="overlay" id="loginOverlay">
-        <div class="popup">
-            <h3 style="color: var(--neon-blue); margin-top: 0;">Login to Profile</h3>
-            <input type="email" id="email" placeholder="Email (Play Store)">
-            <input type="password" placeholder="Password">
-            <button class="btn" onclick="redirectToPlayStore()">Login</button>
-            <p id="errorMsg" style="color: red; font-size: 11px; display: none;">Please enter email</p>
-            <button onclick="closePopup()" style="background:none; border:none; color:#8b949e; width:100%; margin-top:10px;">Close</button>
-        </div>
-    </div>
-
-    <script>
-        const overlay = document.getElementById('loginOverlay');
-        
-        // প্রোফাইলে ক্লিক করলে পপআপ আসবে
-        document.getElementById('profileBtn').onclick = () => {
-            overlay.style.display = 'flex';
-        }
-
-        function closePopup() {
-            overlay.style.display = 'none';
-        }
-
-        // লগইন বাটনে ক্লিক করলে প্লে-স্টোর ওপেন হবে
-        function redirectToPlayStore() {
-            const email = document.getElementById('email').value;
-            if(email) {
-                // প্লে-স্টোর লিঙ্ক (যদি অ্যাপ না থাকে তবে এটি কাজ করবে)
-                window.location.href = "https://play.google.com/store/games";
-            } else {
-                document.getElementById('errorMsg').style.display = 'block';
-            }
-        }
-    </script>
 </body>
 </html>
