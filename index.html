@@ -1,1 +1,62 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Super App</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #ffffff 0%, #e0f7fa 100%); /* সাদা-নীল ব্যাকগ্রাউন্ড */
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
 
+        .loader-wrapper {
+            text-align: center;
+        }
+
+        /* সুন্দর নীল সার্কেল অ্যানিমেশন */
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #00bcd4; /* হালকা নীল */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .text {
+            color: #007c91;
+            font-size: 18px;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader-wrapper">
+        <div class="spinner"></div>
+        <div class="text">LOADING...</div>
+    </div>
+
+    <script>
+        // ৫ সেকেন্ড (৫০০০ মিলিসেকেন্ড) পর ড্যাশবোর্ডে যাবে
+        setTimeout(function() {
+            window.location.href = "dashboard.html"; 
+        }, 5000);
+    </script>
+
+</body>
+</html>
